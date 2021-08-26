@@ -25,7 +25,12 @@ class ToDoList extends Component {
                 <NewToDoForm addToDo={this.addToDo}/>
 
                 <ul>
-                    {this.state.todos.map(todo => <ToDo todo={todo}/>)}
+                    {this.state.todos.map(todo => (
+                        <li key={todo.id}>
+                        <ToDo name={todo.name}/>
+                        </li>
+                        ))
+                    }
                 </ul>
             </div>
         )

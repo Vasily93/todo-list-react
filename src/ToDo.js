@@ -9,11 +9,8 @@ class ToDo extends Component {
     }
 
     render() {
-        console.log(this.props.todo)
         return(
-            <li key={this.props.id}>
-            {this.props.todo.name} 
-            </li>
+            <p>{this.props.name}</p>
         )
     }
 }

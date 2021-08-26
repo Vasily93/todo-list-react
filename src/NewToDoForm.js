@@ -4,7 +4,7 @@ class NewToDoForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            todo: {name: '', id: null}
+            todo: {name: ''}
         }
         this.submitForm = this.submitForm.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -16,7 +16,7 @@ class NewToDoForm extends Component {
             name: this.state.todo.name,
         }
         this.props.addToDo(newtodo)
-        this.setState({todo: '', id: null})
+        this.setState({todo: {name: ''}})
     }
 
     handleChange(evt) {
