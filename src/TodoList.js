@@ -12,11 +12,29 @@ class ToDoList extends Component {
             todos: []
         }
         this.addToDo = this.addToDo.bind(this)
+        this.removeToDo = this.removeToDo.bind(this)
+        this.updateToDo = this.updateToDo.bind(this)
     }
 
     addToDo(todo) {
         todo.id = uuidv4()
         this.setState({ todos: [...this.state.todos, todo]})
+    }
+
+    updateToDo(todo) {
+        const updatedList = this.state.todos.map(t => {
+            if(t.id === todo.id) {
+                t.name = todo.name
+            }
+            return t;
+        })
+
+        this.setState({todos: updatedList})
+    }
+
+    removeToDo(evt) {
+        const updatedList = this.state.todos.filter(todo => todo.id !== evt.target.id)
+        this.setState({todos: updatedList})
     }
 
     render() {
@@ -27,7 +45,8 @@ class ToDoList extends Component {
                 <ul>
                     {this.state.todos.map(todo => (
                         <li key={todo.id}>
-                        <ToDo name={todo.name}/>
+                        <ToDo todo={todo} updateToDo={this.updateToDo}/>
+                        <button id={todo.id} onClick={this.removeToDo}>X</button>
                         </li>
                         ))
                     }
